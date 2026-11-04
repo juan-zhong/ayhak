@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>AYHAK · 安远话词典</title>
+  <link rel="canonical" href="https://juan-zhong.github.io/ayhak/dict.html" />
+  <meta name="description" content="安远话（江西安远客家话）社区词典：汉字、IPA、释义、例句与录音。" />
+  <meta property="og:title" content="AYHAK · 安远话词典" />
+  <meta property="og:description" content="安远话（江西安远客家话）社区词典：汉字、IPA、释义、例句与录音。" />
+  <meta property="og:image" content="https://juan-zhong.github.io/ayhak/images/gallery/%E7%AF%93%E5%AD%90.jpg" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css?v=20261029" />
+</head>
+
+<body>
+  <a class="skip" href="#search">跳到正文</a>
+
+  <nav class="page-nav" aria-label="站点导航">
+    <a href="./index-zh.html">AYHAK</a>
+    <a href="./dict.html" aria-current="page">查词典</a>
+    <a href="./sentences.html">五百句</a>
+    <a href="./plants.html?lang=zh">植物图集</a>
+    <a href="./gallery.html">安远影像</a>
+    <a href="./index-zh.html#join">一起参与</a>
+    <a href="./index-zh.html#about">关于</a>
+    <a href="./index.html" lang="en">English</a>
+  </nav>
+
+  <header class="hero compact">
+    <p class="kicker">AYHAK · DICTIONARY</p>
+    <h1>安远话词典</h1>
+    <p class="wip" style="margin: 2px 0 14px;"><span class="tag" style="margin: 0;">陆续建设中</span></p>
+    <p class="intro">每个乡镇的说法可能有区别，同一个意思可以有好几种说法。</p>
+    <p class="status" id="heroStatus">— 条词条</p>
+  </header>
+
+  <main>
+    <section id="search" class="content-section wide">
+      <h2>查询</h2>
+
+      <div class="searchbar">
+        <input id="q" type="search" placeholder="例如：屋下 / vu ha / 家" autocomplete="off" aria-label="搜索词条" />
+        <button id="btnSearch" class="btn primary">搜索</button>
+      </div>
+
+      <div class="filters">
+        <div class="chip-group" id="varietyChips" aria-label="乡镇">
+          <span class="chip-label">乡镇</span>
+          <button class="chip is-active" data-variety="all">全部</button>
+        </div>
+
+        <div class="chip-group admin-only" id="posChips" aria-label="词性">
+          <span class="chip-label">词性</span>
+          <button class="chip is-active" data-pos="all">全部</button>
+          <button class="chip" data-pos="n">名词</button>
+          <button class="chip" data-pos="v">动词</button>
+          <button class="chip" data-pos="adj">形容词</button>
+          <button class="chip" data-pos="pron">代词</button>
+          <button class="chip" data-pos="num">数词</button>
+          <button class="chip" data-pos="part">语气词</button>
+          <button class="chip" data-pos="other">其他</button>
+        </div>
+      </div>
+
+      <div class="filters">
+        <div class="chip-group" id="themeChips" aria-label="主题"></div>
+      </div>
+
+      <div class="filters">
+        <label class="toggle"><input id="toggleIPA" type="checkbox" checked /> <span>显示 IPA</span></label>
+        <label class="toggle admin-only"><input id="toggleAudio" type="checkbox" checked /> <span>显示发音</span></label>
+        <label class="toggle admin-only"><input id="toggleStarred" type="checkbox" /> <span>只看收藏</span></label>
+      </div>
+
+      <div class="split">
+        <aside class="panel panel-left" aria-label="搜索结果">
+          <div class="panel-head">
+            <h3>结果</h3>
+            <p class="small" id="resultMeta">0 条</p>
+          </div>
+          <div id="results" class="results" role="listbox"></div>
+        </aside>
+
+        <article class="panel panel-right" aria-label="词条详情" aria-live="polite">
+          <div class="panel-head">
+            <h3>词条</h3>
+            <div class="head-actions">
+              <button id="btnStar" class="icon-btn admin-only" disabled title="收藏" aria-label="收藏">☆</button>
+              <button id="btnLink" class="icon-btn" disabled title="复制链接" aria-label="复制链接">🔗</button>
+              <button id="btnCopy" class="icon-btn" disabled title="复制词条" aria-label="复制词条">⎘</button>
+            </div>
+          </div>
+          <div id="entry" class="entry empty">
+            <p>先搜一个词，或者点左边的结果。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="wanted" class="content-section wide">
+      <h2>我们在找这些词</h2>
+      <p>下面这些词还没有记录到安远话的说法。你们那里怎么说？点一个词就能发邮件告诉我们，写上你的乡镇名。</p>
+      <div id="wantedList"><p class="muted">载入中…</p></div>
+    </section>
+
+    <section id="manage" class="content-section wide admin-only">
+      <h2>数据</h2>
+      <h3>导入 / 导出 / 重置 · 纯静态网页，可以直接放在 GitHub Pages</h3>
+      <p class="muted">网页默认读取仓库里的 <code>data/dict.json</code>。在这里导入的数据只保存在你自己的浏览器里，别人看不到；要正式更新词典，请把导出的 JSON 替换掉仓库里的 <code>data/dict.json</code>。</p>
+
+      <div class="manage-grid">
+        <div class="card">
+          <h3>导入（JSON / CSV）</h3>
+          <p class="muted">导入后会覆盖当前浏览器里的词条。</p>
+          <div class="controls">
+            <input id="fileImport" type="file" accept=".json,.csv,text/csv,application/json" />
+            <button id="btnImport" class="btn sm">导入</button>
+          </div>
+          <p class="small" id="importStatus">未导入</p>
+        </div>
+
+        <div class="card">
+          <h3>导出</h3>
+          <p class="muted">导出的是词条文本。浏览器里的录音存在 IndexedDB，不会打包进 JSON。</p>
+          <div class="controls">
+            <button id="btnExport" class="btn sm">导出 JSON</button>
+            <button id="btnExportCSV" class="btn sm btn-ghost">导出 CSV</button>
+            <button id="btnClearAudio" class="btn sm btn-ghost">清空本机录音</button>
+          </div>
+          <p class="small" id="exportStatus">—</p>
+        </div>
+
+        <div class="card">
+          <h3>重置</h3>
+          <p class="muted">丢掉浏览器里的修改，回到仓库里的 <code>data/dict.json</code>。</p>
+          <div class="controls">
+            <button id="btnReset" class="btn sm btn-danger">重置数据</button>
+          </div>
+          <p class="small" id="resetStatus">当前数据来源：—</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h3>CSV 格式</h3>
+        <p class="muted">第一行是表头。<code>senses</code> 和 <code>tags</code> 用 <code>||</code> 分隔；<code>examples</code> 写成 <code>例句::IPA::翻译</code>（IPA 可省略，写成 <code>例句::翻译</code>），多条之间用 <code>||</code> 分隔。<code>sandhi</code> 是连读时的读音（变调后）。<code>variants</code>（其他地方的说法）写成 <code>说法::IPA::乡镇::备注::录音::连读::核实</code>，后面几项可以省略，多条用 <code>||</code> 分隔；<code>verified</code> 填 <code>true</code> 表示已和发音人核实。</p>
+        <pre class="codeblock" id="csvExample"></pre>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h3>JSON 格式</h3>
+        <pre class="codeblock" id="jsonExample"></pre>
+      </div>
+    </section>
+
+    <section id="about" class="content-section">
+      <h2>说明</h2>
+      <p>这部词典是 <a href="./index-zh.html">AYHAK 安远话记录计划</a> 的一部分，词条来自和安远发音人一起做的记录。</p>
+      <ul>
+        <li>每个说法都标明来自哪个乡镇或村子；“各地读音”表里并列不同地方的说法。</li>
+        <li>方括号里是国际音标（IPA），数字是声调。看不懂可以在上面把“显示 IPA”关掉。</li>
+        <li>标着“待核实”的词条还没有和发音人一一核对过，可能会修改。</li>
+      </ul>
+      <p>说法不一样、写错了，或者想补充你们乡镇的说法，欢迎<a href="mailto:juanzhon@buffalo.edu?subject=AYHAK%20词典">写信告诉我们</a>。</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>AYHAK · 联系方式：juanzhon AT buffalo DOT edu</p>
+    <p>© <span id="year">2026</span> Juan Zhong</p>
+    <p class="license">代码 CC0 · 文字与照片 <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh-hans">CC BY-NC 4.0</a> · 录音按发音人授权使用，未经许可请勿转载 · <a href="https://github.com/juan-zhong/ayhak/blob/main/CONTENT-LICENSE.md">授权说明</a></p>
+  </footer>
+
+  <script src="./app.js?v=20261023b"></script>
+</body>
+</html>
